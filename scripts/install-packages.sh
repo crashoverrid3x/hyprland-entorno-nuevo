@@ -24,6 +24,7 @@ echo "[1/6] Sincronizando repositorios..."
 sudo pacman -Syu --noconfirm
 
 echo "[2/6] Resolviendo conflicto de audio (pipewire-pulse vs pulseaudio)..."
+USE_PIPEWIRE_PULSE=1
 REMOVE_PKGS=()
 for pkg in pulseaudio pulseaudio-alsa; do
   if pacman -Qq "$pkg" >/dev/null 2>&1; then
@@ -31,11 +32,23 @@ for pkg in pulseaudio pulseaudio-alsa; do
   fi
 done
 if (( ${#REMOVE_PKGS[@]} > 0 )); then
-  sudo pacman -Rns --noconfirm "${REMOVE_PKGS[@]}"
+  if ! sudo pacman -Rns --noconfirm "${REMOVE_PKGS[@]}"; then
+    echo "No se pudo quitar pulseaudio por dependencias del sistema."
+    echo "Se omite pipewire-pulse para evitar conflicto en esta instalación."
+    USE_PIPEWIRE_PULSE=0
+  fi
 fi
 
 echo "[2/6] Instalando paquetes core (pacman)..."
 mapfile -t PACMAN_PKGS < <(grep -vE '^\s*#|^\s*$' "$PACMAN_LIST")
+if (( USE_PIPEWIRE_PULSE == 0 )); then
+  FILTERED_PKGS=()
+  for pkg in "${PACMAN_PKGS[@]}"; do
+    [[ "$pkg" == "pipewire-pulse" ]] && continue
+    FILTERED_PKGS+=("$pkg")
+  done
+  PACMAN_PKGS=("${FILTERED_PKGS[@]}")
+fi
 sudo pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
 
 echo "[3/6] Instalando helper AUR (yay si no existe)..."
