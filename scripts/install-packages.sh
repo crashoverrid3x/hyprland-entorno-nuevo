@@ -23,6 +23,17 @@ fi
 echo "[1/6] Sincronizando repositorios..."
 sudo pacman -Syu --noconfirm
 
+echo "[2/6] Resolviendo conflicto de audio (pipewire-pulse vs pulseaudio)..."
+REMOVE_PKGS=()
+for pkg in pulseaudio pulseaudio-alsa; do
+  if pacman -Qq "$pkg" >/dev/null 2>&1; then
+    REMOVE_PKGS+=("$pkg")
+  fi
+done
+if (( ${#REMOVE_PKGS[@]} > 0 )); then
+  sudo pacman -Rns --noconfirm "${REMOVE_PKGS[@]}"
+fi
+
 echo "[2/6] Instalando paquetes core (pacman)..."
 mapfile -t PACMAN_PKGS < <(grep -vE '^\s*#|^\s*$' "$PACMAN_LIST")
 sudo pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"

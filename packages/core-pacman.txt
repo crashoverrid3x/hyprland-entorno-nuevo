@@ -25,6 +25,7 @@ nm-connection-editor
 bluez
 bluez-utils
 gnome-bluetooth-3.0
+qt6-multimedia-ffmpeg
 pipewire
 pipewire-pulse
 wireplumber
