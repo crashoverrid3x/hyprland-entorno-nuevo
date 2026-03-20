@@ -1,0 +1,8 @@
+fabric-cli-git
+python-fabric-git
+gray-git
+matugen-bin
+awww-git
+gpu-screen-recorder
+uwsm
+hyprlauncher

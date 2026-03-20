@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Intenta Wayland primero, fallback a XCB con HiDPI
+env QT_QPA_PLATFORM=wayland QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough QT_ENABLE_HIGHDPI_SCALING=1 keepassxc "$@" 2>/dev/null || \
+exec env QT_QPA_PLATFORM=xcb QT_ENABLE_HIGHDPI_SCALING=1 keepassxc "$@"

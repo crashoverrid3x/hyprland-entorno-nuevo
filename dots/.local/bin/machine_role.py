@@ -1,0 +1,1 @@
+/home/crashoverridex/.local/share/pipx/venvs/impacket/bin/machine_role.py
