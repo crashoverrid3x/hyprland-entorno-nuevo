@@ -37,13 +37,6 @@ Repositorio para reconstruir tu entorno Hyprland con dotfiles y scripts de insta
 	- Clona/actualiza este repo automáticamente
 	- Lanza `scripts/rebuild-env.sh`
 
-## Requisitos
-
-- Arch Linux (usa `pacman` + AUR)
-- Usuario con `sudo`
-- Conexión a Internet
-- Ejecutar **sin root**
-
 ## Instalación manual
 
 ```bash
@@ -64,6 +57,13 @@ curl -fsSL https://raw.githubusercontent.com/crashoverrid3x/hyprland-entorno-nue
 ```bash
 wget -qO- https://raw.githubusercontent.com/crashoverrid3x/hyprland-entorno-nuevo/main/scripts/bootstrap.sh | bash
 ```
+
+## Requisitos
+
+- Arch Linux (usa `pacman` + AUR)
+- Usuario con `sudo`
+- Conexión a Internet
+- Ejecutar **sin root**
 
 ## Personalización rápida
 
