@@ -2,6 +2,8 @@
 
 Repositorio para reconstruir tu entorno Hyprland con dotfiles y scripts de instalación automática.
 
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/54b0e085-f95b-4800-8543-989976a78fea" />
+
 ## ¿Qué contiene?
 
 - `dots/` → archivos que se copian a tu `$HOME`.
