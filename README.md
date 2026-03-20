@@ -1,0 +1,1 @@
+# hyprland-entorno-nuevo
