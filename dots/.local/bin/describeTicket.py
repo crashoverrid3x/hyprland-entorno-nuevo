@@ -1,1 +1,0 @@
-/home/crashoverridex/.local/share/pipx/venvs/impacket/bin/describeTicket.py
